@@ -56,4 +56,19 @@
 .icone-loupe {
     position: absolute;
     right: 6%;
+    border: none;
+}
+
+.recipes-container {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 5%;
+    margin-top: 30px;
+}
+
+.recipe {
+    padding: 10px;
+    background-color: grey;
+    width: 100%;
+    word-wrap: break-word;
 }
