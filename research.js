@@ -37,8 +37,12 @@ function displayRecipes() {
         containerRecipes.appendChild(containerRecipe);
 
         const divTitle = document.createElement('div');
-        containerRecipe.textContent = recipe.name;
+        divTitle.textContent = recipe.name;
         containerRecipe.appendChild(divTitle);
+
+        const divDescription = document.createElement('div');
+        divDescription.textContent = recipe.description;
+        containerRecipe.appendChild(divDescription);
 
         const divIngredient = document.createElement('div');
 
@@ -46,6 +50,7 @@ function displayRecipes() {
 
             containerRecipe.textContent += ` ${recipe.ingredients[i].ingredient}`;
         }
+
         containerRecipe.appendChild(divIngredient);
 
 
