@@ -36,14 +36,14 @@
 
 .nav-research {
     display: flex;
-    justify-content: space-between;
-    width: 700px;
+    width: 800px;
     margin-top: 20px;
 }
 
 .container-key-research {
     position: relative;
 }
+
 .search-key {
     width: 200px;
     height: 80px;
@@ -51,6 +51,7 @@
     border: 1px solid #3282F7;
     border-radius: 5px;
     padding-left:20px;
+    margin-right: 20px;
     font-family: Lato;
     font-style: normal;
     font-weight: bold;
@@ -62,7 +63,7 @@
 
 .fleche {
     position: absolute;
-    right: 10%;
+    right: 20%;
     top: 35%;
     width: 20px;
 }
