@@ -1,6 +1,5 @@
-let newRecipes = [...recipes];
 let arrayRecipes = [];
-let arrayTest = [];
+let arrayTrie = [];
 let collectionDataRecipes = {
     ingredients: [], 
     ustensiles: [], 
@@ -23,51 +22,44 @@ function cleanDisplay() {
 
 function trie() {
 
-    for (let i = 0; i < newRecipes.length; i++) {
-        arrayTest[i] = `${newRecipes[i].name}  + ${newRecipes[i].description} `;
+    for (let i = 0; i < recipes.length; i++) {
+        arrayTrie[i] = `${recipes[i].name}  + ${recipes[i].description} `;
 
-        for (let j = 0; j < newRecipes[i].ingredients.length; j++) { 
-            arrayTest[i] += `${newRecipes[i].ingredients[j].ingredient} `;
+        for (let j = 0; j < recipes[i].ingredients.length; j++) { 
+            arrayTrie[i] += `${recipes[i].ingredients[j].ingredient} `;
 
             if (j === 0) {
-                collectionDataRecipes.ingredients[i] = `${newRecipes[i].ingredients[j].ingredient} `;
+                collectionDataRecipes.ingredients[i] = `${recipes[i].ingredients[j].ingredient} `;
             }
 
             else {
-                collectionDataRecipes.ingredients[i] += `${newRecipes[i].ingredients[j].ingredient} `;
+                collectionDataRecipes.ingredients[i] += `${recipes[i].ingredients[j].ingredient} `;
             }
 
         }
     }
-
-    //console.log(arrayTest)
-
 
 };
 
-function trieUstensils() {
+function trieKeyWord() {
 
-    for (let i = 0; i < newRecipes.length; i++ ) {
+    for (let i = 0; i < recipes.length; i++ ) {
 
-    collectionDataRecipes.appareil[i] = newRecipes[i].appliance;
+    collectionDataRecipes.appareil[i] = recipes[i].appliance;
 
-        for (let j = 0; j < newRecipes[i].ustensils.length; j++) { 
+        for (let j = 0; j < recipes[i].ustensils.length; j++) { 
     
             if (j === 0) {
-                collectionDataRecipes.ustensiles[i] = `${newRecipes[i].ustensils[j]} `;
+                collectionDataRecipes.ustensiles[i] = `${recipes[i].ustensils[j]} `;
             }
     
             else {
-                collectionDataRecipes.ustensiles[i] += `${newRecipes[i].ustensils[j]} `;
+                collectionDataRecipes.ustensiles[i] += `${recipes[i].ustensils[j]} `;
             }
     
         }
     }
-
-
-    //console.log(collectionDataRecipes.ustensiles)
 }
-
 
 
 function displayRecipes() {
@@ -95,18 +87,17 @@ function displayRecipes() {
 
         containerRecipe.appendChild(divIngredient);
 
-
     })
 
 };
 
 function researchKeyWordl(value) {
 
-    for (let i = 0; i < arrayTest.length; i++) {
+    for (let i = 0; i < arrayTrie.length; i++) {
 
-        if (arrayTest[i].includes(value)) {
+        if (arrayTrie[i].includes(value)) {
     
-            arrayRecipes.push(newRecipes[i]);
+            arrayRecipes.push(recipes[i]);
         }
     }
 
@@ -114,7 +105,7 @@ function researchKeyWordl(value) {
 
 
 trie();
-trieUstensils();
+trieKeyWord();
 
 inputSearch.addEventListener("input", (e) => {
 
@@ -134,24 +125,24 @@ inputSearch.addEventListener("input", (e) => {
 
 /* function researchKeyWordl(value) {
 
-    for (let i = 0; i < newRecipes.length; i++) {
+    for (let i = 0; i < recipes.length; i++) {
 
-        if (newRecipes[i].description.includes(value)) {
-            arrayRecipes.push(newRecipes[i]);
+        if (recipes[i].description.includes(value)) {
+            arrayRecipes.push(recipes[i]);
             continue;
         }
 
-        else if (newRecipes[i].name.includes(value)) {
-            arrayRecipes.push(newRecipes[i]);
+        else if (recipes[i].name.includes(value)) {
+            arrayRecipes.push(recipes[i]);
             continue;
         } 
 
         else {
 
-            for (let j = 0; j < newRecipes[i].ingredients.length; j++) {
+            for (let j = 0; j < recipes[i].ingredients.length; j++) {
     
-                if (newRecipes[i].ingredients[j].ingredient.includes(value)) {
-                    arrayRecipes.push(newRecipes[i]);
+                if (recipes[i].ingredients[j].ingredient.includes(value)) {
+                    arrayRecipes.push(recipes[i]);
                     break;
                 }
             }
