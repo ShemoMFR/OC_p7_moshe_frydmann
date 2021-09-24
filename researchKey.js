@@ -17,11 +17,9 @@ function researchSingleKeyWord(array, value) {
 
     arrayRecipes.length = 0;
 
-    console.log(array)
-
     for (let i = 0; i < array.length; i++) {
 
-        if (array[i].includes(value)) {
+        if (array[i].toLowerCase().includes(value.toLowerCase())) {
     
             arrayRecipes.push(recipes[i]);
         }

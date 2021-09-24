@@ -37,7 +37,7 @@ function cleanDisplay() {
 function trie() {
 
     for (let i = 0; i < recipes.length; i++) {
-        arrayTrie[i] = `${recipes[i].name}  + ${recipes[i].description} `;
+        arrayTrie[i] = `${recipes[i].name} + ${recipes[i].description} `;
 
         for (let j = 0; j < recipes[i].ingredients.length; j++) { 
             arrayTrie[i] += `${recipes[i].ingredients[j].ingredient} `;
@@ -108,7 +108,7 @@ function researchKeyWordl(value) {
 
     for (let i = 0; i < arrayTrie.length; i++) {
 
-        if (arrayTrie[i].includes(value)) {
+        if (arrayTrie[i].toLowerCase().includes(value.toLowerCase())) {
     
             arrayRecipes.push(recipes[i]);
         }
