@@ -2,6 +2,55 @@ let isOpen = [true, true, true];
 const inputResearchKey = document.querySelectorAll(".search-key");
 const fleche = document.querySelectorAll(".fleche");
 const tags = document.querySelectorAll('.container-tags');
+const mainContainer = document.getElementsByClassName('main-container')[0];
+
+function closeResearchArea(i) {
+    inputResearchKey[i].placeholder = "";
+    inputResearchKey[i].style.width = "200px";
+    fleche[i].style.right = "20%";
+    fleche[i].src = "./logo/fleche-bas.svg";
+    inputResearchKey[i].style.borderRadius = "5px";
+    tags[i].style.display = "none";
+}
+
+function researchSingleKeyWord(array, value) {
+
+    arrayRecipes.length = 0;
+
+    console.log(array)
+
+    for (let i = 0; i < array.length; i++) {
+
+        if (array[i].includes(value)) {
+    
+            arrayRecipes.push(recipes[i]);
+        }
+    }
+}
+
+function handleInputKeywordl(e, i) {
+    inputValue = e.target.value;
+
+    if (inputValue.length < 3) {
+        cleanDisplay();    
+    }
+
+    if (inputValue.length > 2) {
+        cleanDisplay();   
+
+        if (i === 0) {
+            researchSingleKeyWord(collectionDataRecipes.ingredients, inputValue);
+        }
+        else if (i === 1) {
+            researchSingleKeyWord(collectionDataRecipes.ustensiles, inputValue);
+        }
+        else {
+            researchSingleKeyWord(collectionDataRecipes.appareil, inputValue);
+        }
+        
+        displayRecipes();
+    }
+}
 
 function focusResearchKey() {
 
@@ -15,16 +64,11 @@ function focusResearchKey() {
         })
 
         inputResearchKey[i].addEventListener("blur", () => {
-            if (!isOpen[i]) {
+            
                 inputResearchKey[i].value = inputResearchKey[i].id;
-                inputResearchKey[i].placeholder = "";
-                inputResearchKey[i].style.width = "200px";
-                fleche[i].style.right = "20%";
-                fleche[i].src = "./logo/fleche-bas.svg";
-                inputResearchKey[i].style.borderRadius = "5px";
-                tags[i].style.display = "none";
-            }
+                closeResearchArea(i);
         })
+
     }
 }
 
@@ -48,12 +92,7 @@ function openResearchKey() {
             else {
                 isOpen[i] = true;
                 inputResearchKey[i].value = inputResearchKey[i].id;
-                inputResearchKey[i].placeholder = "";
-                inputResearchKey[i].style.width = "200px";
-                fleche[i].style.right = "20%";
-                fleche[i].src = "./logo/fleche-bas.svg";
-                inputResearchKey[i].style.borderRadius = "5px";
-                tags[i].style.display = "none";
+                closeResearchArea(i);
             };
 
          
@@ -61,8 +100,20 @@ function openResearchKey() {
     }
 }
 
+function displayResearchKey() {
+
+    for (let i = 0; i < inputResearchKey.length; i++) {
+
+        inputResearchKey[i].addEventListener("input", (e) => {
+            handleInputKeywordl(e, i)
+        });
+    }
+}
+
 
 focusResearchKey();
 openResearchKey();
+displayResearchKey();
+
 
 

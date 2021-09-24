@@ -11,6 +11,20 @@ const containerRecipes = document.getElementsByClassName('recipes-container')[0]
 const btnSearch = document.getElementsByClassName('icone-loupe')[0];
 let inputValue = "";
 
+function handleInput(e) {
+    inputValue = e.target.value;
+
+    if (inputValue.length < 3) {
+        cleanDisplay();    
+    }
+
+    if (inputValue.length > 2) {
+        cleanDisplay();    
+        researchKeyWordl(inputValue);
+        displayRecipes();
+    }
+}
+
 function cleanDisplay() {
 
     arrayRecipes.length = 0;
@@ -61,7 +75,6 @@ function trieKeyWord() {
     }
 }
 
-
 function displayRecipes() {
 
     arrayRecipes.map(recipe => {
@@ -103,25 +116,14 @@ function researchKeyWordl(value) {
 
 };
 
-
 trie();
 trieKeyWord();
 
 inputSearch.addEventListener("input", (e) => {
-
-    inputValue = e.target.value;
-
-    if (inputValue.length < 3) {
-        cleanDisplay();    
-    }
-
-    if (inputValue.length > 2) {
-        cleanDisplay();    
-        researchKeyWordl(inputValue);
-        displayRecipes();
-    }
+    handleInput(e)
 
 });
+
 
 /* function researchKeyWordl(value) {
 
