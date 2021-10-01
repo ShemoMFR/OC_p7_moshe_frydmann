@@ -118,11 +118,23 @@
 
 .container-tags {
     display: none;
-    /* display: grid; */
-    grid-template-columns: 30% 30% 30%;
+    padding: 10px;
+    grid-template-columns: 20% 20% 20% 20%;
     grid-gap: 5%;
-    width: 300px;
-    background-color: #3282F7;
+    width: 500px;
     border-radius: 0 0 5px 5px;
-    
+    color: white;
+    font-size: 1.2em;
+}
+
+.bgb {
+    background-color: #3282F7;
+}
+
+.bgg {
+    background-color: #68D9A4;
+}
+
+.bgr {
+    background-color: #ED6454;
 }
