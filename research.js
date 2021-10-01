@@ -79,27 +79,58 @@ function displayRecipes() {
 
     arrayRecipes.map(recipe => {
 
-        const containerRecipe = document.createElement('div');
-        containerRecipe.className = "recipe";
+        const containerRecipe = document.createElement("div");
+        containerRecipe.className = "containerRecipe";
+
+        const divPhoto = document.createElement("div");
+        divPhoto.className = "recipe-photo";
+
+        const containerText = document.createElement('div');
+        containerText.className = "recipe";
+
+        const containerTitle = document.createElement('div');
+        containerTitle.className = "recipe-title";
+        const name = document.createElement("div");
+        name.textContent = recipe.name;
+
+        const timeImg = document.createElement('img');
+        timeImg.className = "timeImg";
+        timeImg.src = "./logo/time.png";
+        const time = document.createElement("div");
+        time.className = "time";
+        time.textContent = `${recipe.time}min`;
+
+        containerTitle.appendChild(name);
+        containerTitle.appendChild(timeImg);
+        containerTitle.appendChild(time);
+
+        const containerDescription = document.createElement("div");
+        containerDescription.className = "recipe-description";
+        const containerIngredients = document.createElement("div");
+        containerIngredients.className = "recipe-ingredients"
+
+        containerText.appendChild(containerIngredients);    
+        containerText.appendChild(containerDescription);
+
+        containerRecipe.appendChild(divPhoto);
+        containerRecipe.appendChild(containerTitle);
+        containerRecipe.appendChild(containerText);
+
+        
         containerRecipes.appendChild(containerRecipe);
 
-        const divTitle = document.createElement('div');
-        divTitle.textContent = recipe.name;
-        containerRecipe.appendChild(divTitle);
+       
 
-        const divDescription = document.createElement('div');
-        divDescription.textContent = recipe.description;
-        containerRecipe.appendChild(divDescription);
 
         const divIngredient = document.createElement('div');
 
         for (let i = 0; i < recipe.ingredients.length; i++) {
 
-            containerRecipe.textContent += ` ${recipe.ingredients[i].ingredient}`;
+            containerIngredients.innerHTML += `<strong> ${recipe.ingredients[i].ingredient} : ${recipe.ingredients[i].quantity} ${recipe.ingredients[i].unit ? recipe.ingredients[i].unit : ""} </br>`;
         }
 
-        containerRecipe.appendChild(divIngredient);
-
+        containerText.appendChild(divIngredient);
+        containerDescription.textContent = `${recipe.description}`
     })
 
 };
@@ -118,6 +149,7 @@ function researchKeyWordl(value) {
 
 trie();
 trieKeyWord();
+console.log(recipes)
 
 inputSearch.addEventListener("input", (e) => {
     handleInput(e)
