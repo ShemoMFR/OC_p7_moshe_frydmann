@@ -117,9 +117,7 @@ function displayRecipes() {
         containerRecipe.appendChild(containerText);
 
         
-        containerRecipes.appendChild(containerRecipe);
-
-       
+        containerRecipes.appendChild(containerRecipe);       
 
 
         const divIngredient = document.createElement('div');
@@ -149,7 +147,6 @@ function researchKeyWordl(value) {
 
 trie();
 trieKeyWord();
-console.log(recipes)
 
 inputSearch.addEventListener("input", (e) => {
     handleInput(e)
@@ -157,7 +154,7 @@ inputSearch.addEventListener("input", (e) => {
 });
 
 
-/* function researchKeyWordl(value) {
+/*  function researchKeyWordl(value) {
 
     for (let i = 0; i < recipes.length; i++) {
 
@@ -182,5 +179,5 @@ inputSearch.addEventListener("input", (e) => {
             }
         }
     }
-}; */
+};  */
 

@@ -44,15 +44,28 @@ function createUnitList() {
 
 function displayTags() {
 
-    tags[0].textContent = `${unitList.ingredients[0]} `;
-    tags[1].textContent = `${unitList.ustensiles[0]} `;
+    const gridTags = document.createElement("div");
+    gridTags.className = "grid-tags";
+    tags[0].appendChild(gridTags);
+    const tag = document.createElement('div');
+    tag.className = "tag";
+    tag.textContent = `${unitList.ingredients[0]} `;
+    tags[0].appendChild(tag)
+
+/*     tags[0].textContent = `${unitList.ingredients[0]} `;
+ */    tags[1].textContent = `${unitList.ustensiles[0]} `;
     tags[2].textContent = `${unitList.appareil[0]} `;
 
     for (let j = 0; j < tags.length; j++) {
 
         if (j === 0) {
             for(let i = 1; i < unitList.ingredients.length; i++) {
-                tags[j].textContent += `${unitList.ingredients[i]} `;
+/*                 tags[j].textContent += `${unitList.ingredients[i]} `;
+ */
+                const tag = document.createElement('div');
+                tag.className = "tag";
+                tag.textContent = `${unitList.ingredients[i]} `;
+                tags[0].appendChild(tag)
             }
         }
 
@@ -63,6 +76,7 @@ function displayTags() {
         }
 
         else if (j === 2) {
+            
             for(let i = 1; i < unitList.appareil.length; i++) {
                 tags[j].textContent += `${unitList.appareil[i]} `;
             }
