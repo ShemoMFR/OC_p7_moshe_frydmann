@@ -9,6 +9,13 @@ let unitList = {
     appareil: []
 };
 
+function createTag(j, i, string) {
+    const tag = document.createElement('li');
+    tag.className = "tag";
+    tag.textContent = `${unitList[string][i]} `;
+    tags[j].appendChild(tag)
+};
+
 function createUnitList() {
 
     let k = 0;
@@ -39,46 +46,29 @@ function createUnitList() {
         }
        
     } 
-    
 }
 
 function displayTags() {
-
-    const gridTags = document.createElement("div");
-    gridTags.className = "grid-tags";
-    tags[0].appendChild(gridTags);
-    const tag = document.createElement('div');
-    tag.className = "tag";
-    tag.textContent = `${unitList.ingredients[0]} `;
-    tags[0].appendChild(tag)
-
-/*     tags[0].textContent = `${unitList.ingredients[0]} `;
- */    tags[1].textContent = `${unitList.ustensiles[0]} `;
-    tags[2].textContent = `${unitList.appareil[0]} `;
-
+   
     for (let j = 0; j < tags.length; j++) {
 
         if (j === 0) {
-            for(let i = 1; i < unitList.ingredients.length; i++) {
-/*                 tags[j].textContent += `${unitList.ingredients[i]} `;
- */
-                const tag = document.createElement('div');
-                tag.className = "tag";
-                tag.textContent = `${unitList.ingredients[i]} `;
-                tags[0].appendChild(tag)
+            for (let i = 0; i < unitList.ingredients.length; i++) {
+                createTag(j, i, "ingredients");
             }
         }
 
         else if (j === 1) {
-            for(let i = 1; i < unitList.ustensiles.length; i++) {
-                tags[j].textContent += `${unitList.ustensiles[i]} `;
+
+            for (let i = 0; i < unitList.ustensiles.length; i++) {
+                createTag(j, i, "ustensiles");
             }
         }
 
         else if (j === 2) {
             
-            for(let i = 1; i < unitList.appareil.length; i++) {
-                tags[j].textContent += `${unitList.appareil[i]} `;
+            for(let i = 0; i < unitList.appareil.length; i++) {
+                createTag(j, i, "appareil");
             }
         }
     }
@@ -165,7 +155,7 @@ function openResearchKey() {
                 inputResearchKey[i].style.borderRadius = "5px 5px 0 0";
                 fleche[i].style.right = "10%";
                 fleche[i].src = "./logo/fleche-haut.svg";
-                tags[i].style.display = "flex";
+                tags[i].style.display = "block";
             }
 
             else {
