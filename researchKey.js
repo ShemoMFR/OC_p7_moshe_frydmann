@@ -8,6 +8,9 @@ let unitList = {
     ustensiles: [],
     appareil: []
 };
+const tagUnit = document.getElementsByClassName("tag");
+const arrayTagsSelected = [];
+const tagSelected = document.getElementsByClassName('tags-selected')[0];
 
 function createTag(j, i, string) {
     const tag = document.createElement('li');
@@ -71,6 +74,8 @@ function displayTags() {
                 createTag(j, i, "appareil");
             }
         }
+
+
     }
 
 }
@@ -137,9 +142,9 @@ function focusResearchKey() {
                 inputResearchKey[i].value = inputResearchKey[i].id;
                 closeResearchArea(i);
         })
-
     }
 }
+
 
 function openResearchKey() {
 
@@ -162,9 +167,7 @@ function openResearchKey() {
                 isOpen[i] = true;
                 inputResearchKey[i].value = inputResearchKey[i].id;
                 closeResearchArea(i);
-            };
-
-         
+            };         
         })
     }
 }
@@ -179,12 +182,47 @@ function displayResearchKey() {
     }
 }
 
-
 focusResearchKey();
 openResearchKey();
 displayResearchKey();
 createUnitList();
 displayTags();
+
+
+for (let i = 0; i < tagUnit.length; i++) {
+
+    tagUnit[i].addEventListener("click", (e) => {
+
+        arrayTagsSelected.push(e.target.textContent);
+        const tag = document.createElement('li');
+        tag.className = "tag-selected";
+        tag.innerHTML = `${e.target.textContent}<span class=exit-tag> X </span>`;
+
+        if ( i < 130) {
+            tag.style.border = "1px solid #3282F7";
+            tag.style.color = "#3282F7";
+        
+        }
+
+        else if (i < 160 ) {
+            tag.style.border = "1px solid #00D0A0";
+            tag.style.color = "#00D0A0";
+        }
+
+        else {
+            tag.style.border = "1px solid #ED3333";
+            tag.style.color = "#ED3333";
+        }
+
+        tagSelected.appendChild(tag)
+        console.log(i);
+    })
+}
+
+
+
+
+
 
 
 
