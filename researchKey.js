@@ -11,6 +11,7 @@ let unitList = {
 const tagUnit = document.getElementsByClassName("tag");
 const arrayTagsSelected = [];
 const tagSelected = document.getElementsByClassName('tags-selected')[0];
+let exitTag = document.getElementsByClassName("exit-tag");
 
 function createTag(j, i, string) {
     const tag = document.createElement('li');
@@ -194,30 +195,54 @@ for (let i = 0; i < tagUnit.length; i++) {
     tagUnit[i].addEventListener("click", (e) => {
 
         arrayTagsSelected.push(e.target.textContent);
+
         const tag = document.createElement('li');
         tag.className = "tag-selected";
-        tag.innerHTML = `${e.target.textContent}<span class=exit-tag> X </span>`;
+        tag.textContent = `${e.target.textContent}`;
+        const exit = document.createElement("span");
+        exit.className = "exit-tag";
+        exit.textContent = "x";
+        tag.appendChild(exit);
+
+        exit.addEventListener("click", () => {
+                
+            arrayTagsSelected.splice();
+            exit.parentNode.remove();
+
+        })
 
         if ( i < 130) {
             tag.style.border = "1px solid #3282F7";
-            tag.style.color = "#3282F7";
-        
+            tag.style.color = "white";
+            tag.style.backgroundColor = "#3282F7";
         }
 
         else if (i < 160 ) {
             tag.style.border = "1px solid #00D0A0";
-            tag.style.color = "#00D0A0";
+            tag.style.color = "white";
+            tag.style.backgroundColor = "#00D0A0";
         }
 
         else {
             tag.style.border = "1px solid #ED3333";
-            tag.style.color = "#ED3333";
+            tag.style.color = "white";
+            tag.style.backgroundColor = "#ED3333";
         }
 
-        tagSelected.appendChild(tag)
-        console.log(i);
+        tagSelected.appendChild(tag);
+
+   
     })
 }
+
+
+
+
+
+
+
+
+
 
 
 

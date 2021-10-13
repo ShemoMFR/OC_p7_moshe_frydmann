@@ -227,14 +227,19 @@
     list-style: none;
     cursor: pointer;
     border: 1px solid grey;
-    border-radius: 20px;
+    border-radius: 5px;
     margin-bottom: 5px;
     text-align: center;
 }
 
 .exit-tag {
     margin-left: 10px;
-    color: black;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+    color: white;
+    border-radius: 50%;
+    border: 2px solid white;
 }
 
 .tags-selected {
