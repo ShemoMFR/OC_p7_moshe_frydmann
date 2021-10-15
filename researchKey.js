@@ -3,15 +3,80 @@ const inputResearchKey = document.querySelectorAll(".search-key");
 const fleche = document.querySelectorAll(".fleche");
 const tags = document.querySelectorAll('.container-tags');
 const mainContainer = document.getElementsByClassName('main-container')[0];
+let arrayRecipesByTags = [];
+const tagUnit = document.getElementsByClassName("tag");
+const arrayTagsSelected = [];
+const tagSelected = document.getElementsByClassName('tags-selected')[0];
+let exitTag = document.getElementsByClassName("exit-tag");
 let unitList = {
     ingredients: [],
     ustensiles: [],
     appareil: []
 };
-const tagUnit = document.getElementsByClassName("tag");
-const arrayTagsSelected = [];
-const tagSelected = document.getElementsByClassName('tags-selected')[0];
-let exitTag = document.getElementsByClassName("exit-tag");
+let k = 0;
+let arrayIndex = [];
+
+function researchSingleTag(array, value) {
+
+    arrayIndex.length = 0;
+
+    for (let i = 0; i < array.length; i++) {
+
+        if (array[i].toLowerCase().includes(value.toLowerCase())) {
+    
+            arrayIndex.push(i);
+        }
+    }
+}
+
+function displayTagsSelected() {
+
+    arrayRecipesByTags = tagSelected.childNodes;
+    arrayRecipes.length = 0;
+
+    if (arrayRecipesByTags[1].id == "app") {
+        researchSingleTag(collectionDataRecipes.appareil, arrayRecipesByTags[1].firstChild.data.slice(0, -1));
+    }
+
+    else if (arrayRecipesByTags[1].id == "ust") {
+        researchSingleTag(collectionDataRecipes.ustensiles, arrayRecipesByTags[1].firstChild.data.slice(0, -1));
+    }
+
+    else {
+        researchSingleTag(collectionDataRecipes.ingredients, arrayRecipesByTags[1].firstChild.data.slice(0, -1));
+    }
+    
+    for (let j = 2; j < arrayRecipesByTags.length; j++) {
+
+        for (let i = 0; i < arrayIndex.length; i++) {
+
+            if (arrayRecipesByTags[j].id == "app" && !(collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+                console.log("app")
+                continue;
+            }
+        
+            else if (arrayRecipesByTags[j].id == "ust" && !(collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+                console.log("ust")
+
+                continue;
+            }
+        
+            else if (arrayRecipesByTags[j].id == "ing" && !(collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+                console.log("ing")
+
+                continue;
+            }
+
+            arrayRecipes.push(recipes[arrayIndex[i]]);
+            
+        }
+
+        console.log(arrayRecipes)
+        cleanDisplay();
+        displayRecipes();
+    }
+
+}
 
 function createTag(j, i, string) {
     const tag = document.createElement('li');
@@ -64,21 +129,18 @@ function displayTags() {
 
         else if (j === 1) {
 
-            for (let i = 0; i < unitList.ustensiles.length; i++) {
-                createTag(j, i, "ustensiles");
+            for (let i = 0; i < unitList.appareil.length; i++) {
+                createTag(j, i, "appareil");
             }
         }
 
         else if (j === 2) {
             
-            for(let i = 0; i < unitList.appareil.length; i++) {
-                createTag(j, i, "appareil");
+            for(let i = 0; i < unitList.ustensiles.length; i++) {
+                createTag(j, i, "ustensiles");
             }
         }
-
-
     }
-
 }
 
 function closeResearchArea(i) {
@@ -189,6 +251,8 @@ displayResearchKey();
 createUnitList();
 displayTags();
 
+/* Sélection d'un ou plusieurs tags */
+
 
 for (let i = 0; i < tagUnit.length; i++) {
 
@@ -204,6 +268,7 @@ for (let i = 0; i < tagUnit.length; i++) {
         exit.textContent = "x";
         tag.appendChild(exit);
 
+        /**** Suppression d'un tag au click sur la croix */
         exit.addEventListener("click", () => {
                 
             arrayTagsSelected.splice();
@@ -212,25 +277,28 @@ for (let i = 0; i < tagUnit.length; i++) {
         })
 
         if ( i < 130) {
+            tag.id = "ing";
             tag.style.border = "1px solid #3282F7";
             tag.style.color = "white";
             tag.style.backgroundColor = "#3282F7";
         }
 
-        else if (i < 160 ) {
+        else if (i < 141 ) {
+            tag.id = "app";
             tag.style.border = "1px solid #00D0A0";
             tag.style.color = "white";
             tag.style.backgroundColor = "#00D0A0";
         }
 
         else {
+            tag.id = "ust";
             tag.style.border = "1px solid #ED3333";
             tag.style.color = "white";
             tag.style.backgroundColor = "#ED3333";
         }
 
         tagSelected.appendChild(tag);
-
+        displayTagsSelected();
    
     })
 }
