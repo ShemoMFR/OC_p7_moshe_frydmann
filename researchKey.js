@@ -31,6 +31,8 @@ function researchSingleTag(array, value) {
 
 function displayTagsSelected() {
 
+    cleanDisplay();
+
     arrayRecipesByTags = tagSelected.childNodes;
     arrayRecipes.length = 0;
 
@@ -55,15 +57,13 @@ function displayTagsSelected() {
                 continue;
             }
         
-            else if (arrayRecipesByTags[j].id == "ust" && !(collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+            else if (arrayRecipesByTags[j].id == "ust" && !(collectionDataRecipes.ustensiles[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
                 console.log("ust")
-
                 continue;
             }
         
-            else if (arrayRecipesByTags[j].id == "ing" && !(collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+            else if (arrayRecipesByTags[j].id == "ing" && !(collectionDataRecipes.ingredients[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
                 console.log("ing")
-
                 continue;
             }
 
@@ -72,7 +72,6 @@ function displayTagsSelected() {
         }
 
         console.log(arrayRecipes)
-        cleanDisplay();
         displayRecipes();
     }
 
@@ -149,6 +148,7 @@ function closeResearchArea(i) {
     fleche[i].style.right = "20%";
     fleche[i].src = "./logo/fleche-bas.svg";
     inputResearchKey[i].style.borderRadius = "5px";
+    inputResearchKey[i].value = `${inputResearchKey[i].id}`;
     tags[i].style.display = "none";
 }
 
@@ -258,6 +258,7 @@ for (let i = 0; i < tagUnit.length; i++) {
 
     tagUnit[i].addEventListener("click", (e) => {
 
+        let index = 0;
         arrayTagsSelected.push(e.target.textContent);
 
         const tag = document.createElement('li');
@@ -273,6 +274,7 @@ for (let i = 0; i < tagUnit.length; i++) {
                 
             arrayTagsSelected.splice();
             exit.parentNode.remove();
+            displayTagsSelected();
 
         })
 
@@ -284,6 +286,7 @@ for (let i = 0; i < tagUnit.length; i++) {
         }
 
         else if (i < 141 ) {
+            index = 1;
             tag.id = "app";
             tag.style.border = "1px solid #00D0A0";
             tag.style.color = "white";
@@ -291,6 +294,7 @@ for (let i = 0; i < tagUnit.length; i++) {
         }
 
         else {
+            index = 2;
             tag.id = "ust";
             tag.style.border = "1px solid #ED3333";
             tag.style.color = "white";
@@ -298,6 +302,8 @@ for (let i = 0; i < tagUnit.length; i++) {
         }
 
         tagSelected.appendChild(tag);
+
+        closeResearchArea(index);
         displayTagsSelected();
    
     })
