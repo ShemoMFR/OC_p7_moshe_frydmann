@@ -52,8 +52,6 @@ function displayTagsSelected() {
         researchSingleTag(collectionDataRecipes.ingredients, arrayRecipesByTags[1].firstChild.data.slice(0, -1));
     }
     
-   
-
     for (let j = 2; j < arrayRecipesByTags.length; j++) {
 
         let m = 0;
@@ -84,9 +82,6 @@ function displayTagsSelected() {
 
     }
 
-
-    arrayRecipes = [... new Set(arrayRecipes.id)];
-    console.log(arrayIndex)
     createNewListRecipes();
     displayRecipes();
     
@@ -172,6 +167,8 @@ function researchSingleKeyWord(array, value) {
 
     arrayRecipes.length = 0;
 
+    console.log(value)
+
     for (let i = 0; i < array.length; i++) {
 
         if (array[i].toLowerCase().includes(value.toLowerCase())) {
@@ -195,10 +192,10 @@ function handleInputKeywordl(e, i) {
             researchSingleKeyWord(collectionDataRecipes.ingredients, inputValue);
         }
         else if (i === 1) {
-            researchSingleKeyWord(collectionDataRecipes.ustensiles, inputValue);
+            researchSingleKeyWord(collectionDataRecipes.appareil, inputValue);
         }
         else {
-            researchSingleKeyWord(collectionDataRecipes.appareil, inputValue);
+            researchSingleKeyWord(collectionDataRecipes.ustensiles, inputValue);
         }
         
         displayRecipes();

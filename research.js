@@ -77,6 +77,8 @@ function trieKeyWord() {
 
 function displayRecipes() {
 
+    arrayRecipes = [...new Set(arrayRecipes)];
+
     arrayRecipes.map(recipe => {
 
         const containerRecipe = document.createElement("div");
