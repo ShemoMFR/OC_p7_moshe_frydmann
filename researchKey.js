@@ -16,9 +16,13 @@ let unitList = {
 let k = 0;
 let arrayIndex = [];
 
-function researchSingleTag(array, value) {
+function createNewListRecipes() {
+    for (let i = 0; i < arrayIndex.length; i++) {
+        arrayRecipes.push(recipes[arrayIndex[i]]);
+    }
+} 
 
-    arrayIndex.length = 0;
+function researchSingleTag(array, value) {
 
     for (let i = 0; i < array.length; i++) {
 
@@ -48,33 +52,44 @@ function displayTagsSelected() {
         researchSingleTag(collectionDataRecipes.ingredients, arrayRecipesByTags[1].firstChild.data.slice(0, -1));
     }
     
+   
+
     for (let j = 2; j < arrayRecipesByTags.length; j++) {
+
+        let m = 0;
 
         for (let i = 0; i < arrayIndex.length; i++) {
 
-            if (arrayRecipesByTags[j].id == "app" && !(collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
-                console.log("app")
-                continue;
+            if (arrayRecipesByTags[j].id == "app" && (collectionDataRecipes.appareil[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+                let temp = arrayIndex[i];
+                arrayIndex[m] = temp;
+                m++;
             }
         
-            else if (arrayRecipesByTags[j].id == "ust" && !(collectionDataRecipes.ustensiles[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
-                console.log("ust")
-                continue;
+            else if (arrayRecipesByTags[j].id == "ust" && (collectionDataRecipes.ustensiles[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+                let temp = arrayIndex[i];
+                arrayIndex[m] = temp;
+                m++;
             }
         
-            else if (arrayRecipesByTags[j].id == "ing" && !(collectionDataRecipes.ingredients[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
-                console.log("ing")
-                continue;
+            else if (arrayRecipesByTags[j].id == "ing" && (collectionDataRecipes.ingredients[arrayIndex[i]].toLowerCase().includes(arrayRecipesByTags[j].firstChild.data.slice(0, -1).toLowerCase()))) {
+                let temp = arrayIndex[i];
+                arrayIndex[m] = temp;
+                m++;
             }
 
-            arrayRecipes.push(recipes[arrayIndex[i]]);
-            
         }
 
-        console.log(arrayRecipes)
-        displayRecipes();
+        arrayIndex.length = m;
+
     }
 
+
+    arrayRecipes = [... new Set(arrayRecipes.id)];
+    console.log(arrayIndex)
+    createNewListRecipes();
+    displayRecipes();
+    
 }
 
 function createTag(j, i, string) {
@@ -112,7 +127,7 @@ function createUnitList() {
                 l++;
             }
         }
-       
+    
     } 
 }
 
@@ -140,6 +155,7 @@ function displayTags() {
             }
         }
     }
+
 }
 
 function closeResearchArea(i) {
@@ -278,14 +294,14 @@ for (let i = 0; i < tagUnit.length; i++) {
 
         })
 
-        if ( i < 130) {
+        if ( i < 130 ) {
             tag.id = "ing";
             tag.style.border = "1px solid #3282F7";
             tag.style.color = "white";
             tag.style.backgroundColor = "#3282F7";
         }
 
-        else if (i < 141 ) {
+        else if ( i < 141 ) {
             index = 1;
             tag.id = "app";
             tag.style.border = "1px solid #00D0A0";
