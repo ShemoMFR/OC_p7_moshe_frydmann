@@ -77,8 +77,6 @@ function trieKeyWord() {
 
 function displayRecipes() {
 
-    arrayRecipes = [...new Set(arrayRecipes)];
-
     arrayRecipes.map(recipe => {
 
         const containerRecipe = document.createElement("div");
@@ -155,30 +153,5 @@ inputSearch.addEventListener("input", (e) => {
 });
 
 
-/*  function researchKeyWordl(value) {
 
-    for (let i = 0; i < recipes.length; i++) {
-
-        if (recipes[i].description.includes(value)) {
-            arrayRecipes.push(recipes[i]);
-            continue;
-        }
-
-        else if (recipes[i].name.includes(value)) {
-            arrayRecipes.push(recipes[i]);
-            continue;
-        } 
-
-        else {
-
-            for (let j = 0; j < recipes[i].ingredients.length; j++) {
-    
-                if (recipes[i].ingredients[j].ingredient.includes(value)) {
-                    arrayRecipes.push(recipes[i]);
-                    break;
-                }
-            }
-        }
-    }
-};  */
 
