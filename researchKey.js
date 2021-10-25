@@ -33,7 +33,6 @@ function eventTags() {
             exit.textContent = "x";
             tag.appendChild(exit);
 
-            /**** Suppression d'un tag au click sur la croix */
             exit.addEventListener("click", () => {
                     
                 arrayTagsSelected.splice();
@@ -95,8 +94,13 @@ function unitListRelatedToTags() {
         }
     }
 
+    if (tagSelected.childNodes.length === 1) {
+
+        cleanDisplayTags();
+        createUnitList(); 
+    }
+
     displayTags();
-    eventTags();
 }
 
 function cleanDisplayTags() {
@@ -119,6 +123,8 @@ function cleanDisplayTags() {
 }; 
 
 function createNewListRecipes() {
+
+    console.log(arrayIndex)
     
     for (let i = 0; i < arrayIndex.length; i++) {
         arrayRecipes.push(recipes[arrayIndex[i]]);
@@ -127,6 +133,8 @@ function createNewListRecipes() {
     arrayRecipes = [...new Set(arrayRecipes)];
 
     unitListRelatedToTags();
+    eventTags();
+
 } 
 
 function researchSingleTag(array, value) {
@@ -143,6 +151,7 @@ function researchSingleTag(array, value) {
 function displayTagsSelected() {
 
     cleanDisplay();
+    arrayIndex.length = 0;
 
     arrayRecipesByTags = tagSelected.childNodes;
     arrayRecipes.length = 0;
@@ -191,12 +200,10 @@ function displayTagsSelected() {
         arrayIndex.length = m;
     }
 
-    console.log(arrayRecipes)
-
-
     cleanDisplayTags();
     createNewListRecipes();
     displayRecipes();
+    console.log("1er affichage" + arrayRecipes)
 }
 
 function createTag(j, i, string) {
@@ -391,15 +398,5 @@ displayResearchKey();
 createUnitList();
 displayTags();
 eventTags();
-
-/* Sélection d'un ou plusieurs tags */
-
-
-
-
-
-
-
-
 
 
