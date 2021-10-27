@@ -1,5 +1,6 @@
 let arrayRecipes = [];
 let arrayTrie = [];
+let error = document.querySelector(".error-result");
 let collectionDataRecipes = {
     ingredients: [], 
     ustensiles: [], 
@@ -134,6 +135,15 @@ function displayRecipes() {
         containerText.appendChild(divIngredient);
         containerDescription.textContent = `${recipe.description}`
     })
+
+    if (arrayRecipes.length == 0) {
+        error.textContent = "Aucune recette ne correspond à votre recherche";
+        error.style.display = "block";
+    }
+    else {
+        error.textContent = "";
+        error.style.display = "none";
+    }
 
 };
 

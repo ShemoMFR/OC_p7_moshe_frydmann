@@ -16,6 +16,16 @@
     width: 100%;
 }
 
+.error-result {
+    display: none;
+    margin-top: 10px;
+    color: red;
+    font-size: 2em;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 20px;
+}
+
 .title-page {
     font-family: DM Sans;
     font-style: normal;
