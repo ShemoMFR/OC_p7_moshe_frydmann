@@ -143,17 +143,6 @@ function displayRecipes() {
 
 };
 
-/* function researchKeyWordl(value) {
-
-    for (let i = 0; i < arrayTrie.length; i++) {
-
-        if (arrayTrie[i].toLowerCase().includes(value.toLowerCase())) {
-            arrayRecipes.push(recipes[i]);
-        }
-    }
-
-}; */
-
 function researchKeyWordl(value) {
 
     arrayTrie.forEach(recipe => {
