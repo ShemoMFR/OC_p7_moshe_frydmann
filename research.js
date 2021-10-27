@@ -125,10 +125,6 @@ function displayRecipes() {
 
         for (let i = 0; i < recipe.ingredients.length; i++) {
 
-            console.log(recipe.ingredients[i].quantity)
-            console.log(recipe.ingredients[i].unit)
-
-
             containerIngredients.innerHTML += `<strong> ${recipe.ingredients[i].ingredient} : ${recipe.ingredients[i].quantity ? recipe.ingredients[i].quantity : "" } ${recipe.ingredients[i].unit ? recipe.ingredients[i].unit : ""} </br>`;
         }
 
@@ -147,7 +143,7 @@ function displayRecipes() {
 
 };
 
-function researchKeyWordl(value) {
+/* function researchKeyWordl(value) {
 
     for (let i = 0; i < arrayTrie.length; i++) {
 
@@ -156,7 +152,20 @@ function researchKeyWordl(value) {
         }
     }
 
-};
+}; */
+
+function researchKeyWordl(value) {
+
+    arrayTrie.forEach(recipe => {
+
+        if (recipe.toLowerCase().includes(value.toLowerCase())) {
+            arrayRecipes.push(recipes[arrayTrie.indexOf(recipe)]);
+        }
+    })
+
+} 
+
+
 
 trie();
 trieKeyWord();
