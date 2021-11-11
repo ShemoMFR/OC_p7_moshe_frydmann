@@ -100,6 +100,26 @@ function unitListRelatedToTags() {
         createUnitList(); 
     }
 
+    /* Suppresion des tags sélectionnés */
+
+    if (tagSelected.childElementCount) {
+        
+        if (unitList.ingredients.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
+            let index = unitList.ingredients.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
+            unitList.ingredients.splice(index, 1);
+        }
+
+        else if (unitList.appareil.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
+            let index = unitList.appareil.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
+            unitList.appareil.splice(index, 1);
+        }
+
+        else {
+            let index = unitList.ustensiles.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
+            unitList.ustensiles.splice(index, 1)
+        }
+    }
+
     displayTags();
 }
 
@@ -123,8 +143,6 @@ function cleanDisplayTags() {
 }; 
 
 function createNewListRecipes() {
-
-    console.log(arrayIndex)
     
     for (let i = 0; i < arrayIndex.length; i++) {
         arrayRecipes.push(recipes[arrayIndex[i]]);
@@ -203,10 +221,9 @@ function displayTagsSelected() {
     cleanDisplayTags();
     createNewListRecipes();
     displayRecipes();
-    console.log("1er affichage" + arrayRecipes)
 }
 
-function createTag(j, i, string) {
+function createTag(j, i, string) { 
 
     const tag = document.createElement('li');
     tag.className = "tag";
@@ -398,5 +415,3 @@ displayResearchKey();
 createUnitList();
 displayTags();
 eventTags();
-
-

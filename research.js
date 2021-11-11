@@ -125,10 +125,6 @@ function displayRecipes() {
 
         for (let i = 0; i < recipe.ingredients.length; i++) {
 
-            console.log(recipe.ingredients[i].quantity)
-            console.log(recipe.ingredients[i].unit)
-
-
             containerIngredients.innerHTML += `<strong> ${recipe.ingredients[i].ingredient} : ${recipe.ingredients[i].quantity ? recipe.ingredients[i].quantity : "" } ${recipe.ingredients[i].unit ? recipe.ingredients[i].unit : ""} </br>`;
         }
 
