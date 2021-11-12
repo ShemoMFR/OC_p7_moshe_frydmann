@@ -105,9 +105,9 @@ function unitListRelatedToTags() {
 
 function cleanDisplayTags() {
 
-    unitList.ingredients.length = [];
+    /* unitList.ingredients.length = [];
     unitList.appareil.length = [];
-    unitList.ustensiles.length = [];
+    unitList.ustensiles.length = []; */
     
     while (tags[0].firstChild) {
         tags[0].removeChild(tags[0].lastChild);
@@ -203,7 +203,6 @@ function displayTagsSelected() {
     cleanDisplayTags();
     createNewListRecipes();
     displayRecipes();
-    console.log("1er affichage" + arrayRecipes)
 }
 
 function createTag(j, i, string) {
@@ -262,6 +261,8 @@ function createUnitList() {
 }
 
 function displayTags() {
+
+    console.log(unitList)
    
     for (let j = 0; j < tags.length; j++) {
 
@@ -301,14 +302,25 @@ function closeResearchArea(i) {
 function researchSingleKeyWord(array, value) {
 
     arrayRecipes.length = 0;
+    let arrayCopy = [];
 
     for (let i = 0; i < array.length; i++) {
 
         if (array[i].toLowerCase().includes(value.toLowerCase())) {
     
-            arrayRecipes.push(recipes[i]);
+            arrayRecipes.push(recipes[i]);            
+        };
+
+        if (unitList.ingredients[i].toLowerCase().includes(value.toLowerCase())) {
+            console.log(unitList.ingredients[i])
         }
     }
+
+
+    console.log(arrayCopy)
+    unitList.ingredients = ["bonjour"];
+    cleanDisplayTags();
+    displayTags();
 }
 
 function handleInputKeywordl(e, i) {
