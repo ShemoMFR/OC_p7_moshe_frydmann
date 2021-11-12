@@ -67,6 +67,7 @@ function eventTags() {
 
             tagSelected.appendChild(tag);
             closeResearchArea(index);
+
             displayTagsSelected();
         })
     }
@@ -102,6 +103,7 @@ function unitListRelatedToTags() {
 
     /* Suppresion des tags sélectionnés */
 
+    
     if (tagSelected.childElementCount) {
         
         if (unitList.ingredients.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
@@ -112,11 +114,14 @@ function unitListRelatedToTags() {
         else if (unitList.appareil.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
             let index = unitList.appareil.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
             unitList.appareil.splice(index, 1);
+
         }
 
-        else {
+        else if (unitList.ustensiles.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
+
             let index = unitList.ustensiles.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
             unitList.ustensiles.splice(index, 1)
+
         }
     }
 
@@ -259,7 +264,7 @@ function createUnitList() {
             m++;
         }
 
-        for (let j = 0; j< recipes[i].ingredients.length; j++) {
+        for (let j = 0; j < recipes[i].ingredients.length; j++) {
 
             if (!(unitList.ingredients.includes(recipes[i].ingredients[j].ingredient))) {
                 unitList.ingredients[k] = recipes[i].ingredients[j].ingredient;
@@ -276,6 +281,24 @@ function createUnitList() {
         }
     
     } 
+
+    if (tagSelected.childElementCount) {
+        
+        if (unitList.ingredients.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
+            let index = unitList.ingredients.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
+            unitList.ingredients.splice(index, 1);
+        }
+
+        else if (unitList.appareil.includes(tagSelected.lastChild.innerText.replace("\nx", ""))) {
+            let index = unitList.appareil.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
+            unitList.appareil.splice(index, 1);
+        }
+
+        else {
+            let index = unitList.ustensiles.indexOf(tagSelected.lastChild.innerText.replace("\nx", ""));
+            unitList.ustensiles.splice(index, 1)
+        }
+    }
 }
 
 function displayTags() {
