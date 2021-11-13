@@ -421,6 +421,7 @@ function focusResearchKey() {
                 inputResearchKey[i].value = inputResearchKey[i].id;
 
                 if (tags[i].style.display == "" || tags[i].style.display == "none") {
+                    isOpen[i] = true;
                     closeResearchArea(i);
                     eventTags();
                 }
