@@ -320,7 +320,7 @@ function displayTags() {
 
         else if (j === 2) {
             
-            for(let i = 0; i < unitList.ustensiles.length; i++) {
+            for (let i = 0; i < unitList.ustensiles.length; i++) {
                 createTag(j, i, "ustensiles");
             }
         }
@@ -338,9 +338,11 @@ function closeResearchArea(i) {
     tags[i].style.display = "none";
 }
 
-function researchSingleKeyWord(array, value) {
+function researchSingleKeyWord(array, value, e) {
 
     arrayRecipes.length = 0;
+    let arrayTest = [];
+    let i;
 
     for (let i = 0; i < array.length; i++) {
 
@@ -349,6 +351,33 @@ function researchSingleKeyWord(array, value) {
             arrayRecipes.push(recipes[i]);
         }
     }
+
+
+    if (e.target.id === "Ingrédients") {
+        i = 0;
+    }
+
+    else if (e.target.id === "Appareil") {
+        i = 1;
+    }
+
+    else {
+        i = 2;
+    }
+    
+    arrayTest = [...tags[i].children].filter(tag => 
+    
+        tag.innerText.toLowerCase().includes(value.toLowerCase())
+    ) 
+
+    cleanDisplayTags();
+
+    arrayTest.forEach(tag => {
+        tags[i].appendChild(tag)
+    })
+ 
+    eventTags();
+    
 }
 
 function handleInputKeywordl(e, i) {
@@ -356,20 +385,22 @@ function handleInputKeywordl(e, i) {
     inputValue = e.target.value;
 
     if (inputValue.length < 3) {
-        cleanDisplay();    
+        cleanDisplayTags();    
+        createUnitList(); 
+        displayTags();
     }
 
     if (inputValue.length > 2) {
         cleanDisplay();   
 
         if (i === 0) {
-            researchSingleKeyWord(collectionDataRecipes.ingredients, inputValue);
+            researchSingleKeyWord(collectionDataRecipes.ingredients, inputValue, e);
         }
         else if (i === 1) {
-            researchSingleKeyWord(collectionDataRecipes.appareil, inputValue);
+            researchSingleKeyWord(collectionDataRecipes.appareil, inputValue, e);
         }
         else {
-            researchSingleKeyWord(collectionDataRecipes.ustensiles, inputValue);
+            researchSingleKeyWord(collectionDataRecipes.ustensiles, inputValue, e);
         }
         
         displayRecipes();
@@ -390,9 +421,13 @@ function focusResearchKey() {
         inputResearchKey[i].addEventListener("blur", () => {
             
                 inputResearchKey[i].value = inputResearchKey[i].id;
-                closeResearchArea(i);
+
+                if (tags[i].style.display == "" || tags[i].style.display == "none") {
+                    closeResearchArea(i);
+                }
         })
     }
+
 }
 
 
