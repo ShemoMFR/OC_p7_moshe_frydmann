@@ -375,9 +375,7 @@ function researchSingleKeyWord(array, value, e) {
     arrayTest.forEach(tag => {
         tags[i].appendChild(tag)
     })
- 
-    eventTags();
-    
+     
 }
 
 function handleInputKeywordl(e, i) {
@@ -424,6 +422,7 @@ function focusResearchKey() {
 
                 if (tags[i].style.display == "" || tags[i].style.display == "none") {
                     closeResearchArea(i);
+                    eventTags();
                 }
         })
     }
