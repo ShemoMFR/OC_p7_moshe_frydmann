@@ -248,7 +248,7 @@ function createTag(j, i, string) {
             null;
     };
 
-    tags[j].appendChild(tag)
+    tags[j].appendChild(tag);
 };
 
 function createUnitList() {
@@ -352,7 +352,6 @@ function researchSingleKeyWord(array, value, e) {
         }
     }
 
-
     if (e.target.id === "Ingrédients") {
         i = 0;
     }
@@ -375,7 +374,9 @@ function researchSingleKeyWord(array, value, e) {
     arrayTest.forEach(tag => {
         tags[i].appendChild(tag)
     })
-     
+    
+    eventTags();
+
 }
 
 function handleInputKeywordl(e, i) {
