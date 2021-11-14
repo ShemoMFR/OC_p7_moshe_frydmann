@@ -76,6 +76,15 @@ function trieKeyWord() {
     }
 }
 
+function displayAllRecipes() {
+
+    for (let i = 0; i < recipes.length; i++) {
+        arrayRecipes.push(recipes[i]);
+    }
+
+    displayRecipes();
+}
+
 function displayRecipes() {
 
     arrayRecipes.map(recipe => {
@@ -161,6 +170,8 @@ inputSearch.addEventListener("input", (e) => {
     handleInput(e)
 
 });
+
+displayAllRecipes();
 
 
 
